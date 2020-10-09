@@ -15,7 +15,6 @@ namespace MadPay724.Data.Models
         }
         [Required]
         public string Name { get; set; }
-
         [Required]
         public string UserName { get; set; }
         [Required]
@@ -30,9 +29,5 @@ namespace MadPay724.Data.Models
         public bool IsActive { get; set; }
         public bool Status { get; set; }
         public ICollection<Photo> Photos { get; set; }
-        public ICollection<BankCard> BankCards { get; set; }
-
-
-
     }
 }

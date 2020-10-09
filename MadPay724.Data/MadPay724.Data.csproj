@@ -18,8 +18,4 @@
 		<ProjectRefrence Include="..\MadPay724.Data\MadPay724.Data.csproj"></ProjectRefrence>
 	</ItemGroup>
 
-	<ItemGroup>
-	  <Folder Include="repositories\" />
-	</ItemGroup>
-
 </Project>

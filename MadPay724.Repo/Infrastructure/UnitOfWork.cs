@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using MadPay724.Data.repositories.Repo;
+using MadPay724.Repo.repositories.Interface;
 using Microsoft.EntityFrameworkCore;
 
-namespace MadPay724.Data.Infrastructure
+namespace MadPay724.Repo.Infrastructure
 {
     public class UnitOfWork<TContext> : IUnitOfWork<TContext> where TContext : DbContext, new()
     {
@@ -17,6 +19,29 @@ namespace MadPay724.Data.Infrastructure
         }
 
         #endregion
+
+        #region UserRepository
+
+        private IUserRepository userRepository;
+
+        public IUserRepository UserRepository
+        {
+            get
+            {
+                if (userRepository == null)
+                {
+                    userRepository=new UserRepository(_db);
+                }
+
+                return userRepository;
+                {
+                    
+                }
+            }
+        }
+
+        #endregion
+       
 
         #region Save
         public void Save()
@@ -33,6 +58,8 @@ namespace MadPay724.Data.Infrastructure
         #region dispose
 
         private bool disposed = false;
+
+    
 
         protected virtual void Dispose(bool disposing)
         {

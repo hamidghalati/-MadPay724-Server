@@ -5,6 +5,12 @@
     <TargetFramework>netcoreapp3.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MadPay724.Common\MadPay724.Common.csproj" />
+    <ProjectReference Include="..\MadPay724.Data\MadPay724.Data.csproj" />
+    <ProjectReference Include="..\MadPay724.Repo\MadPay724.Repo.csproj" />
+  </ItemGroup>
+
 	<ItemGroup>
 		<ProjectRefrence Include="..\MadPay724.Repo\MadPay724.Repo.csproj"></ProjectRefrence>
 	</ItemGroup>

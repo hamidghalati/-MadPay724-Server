@@ -2,6 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MadPay724.Data.DatabaseContext;
+using MadPay724.Data.Models;
+using MadPay724.Repo.Infrastructure;
+using MadPay724.Services.Interface;
+using MadPay724.Services.Service;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MadPay724.Presentation.Controllers
@@ -10,11 +15,33 @@ namespace MadPay724.Presentation.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
+        private readonly IUnitOfWork<MadPayDbContext> _db;
+        private readonly IAuthService _authService;
+        public ValuesController(IUnitOfWork<MadPayDbContext> dbContext, IAuthService authService)
+        {
+            _db = dbContext;
+            _authService = new AuthService(_db);
+        }
+
         // GET api/values
         [HttpGet]
         public async Task<ActionResult<IEnumerable<string>>> Get()
         {
-            return new string[] { "value1", "value2" };
+            var user = new User()
+            {
+                Address = "شیراز",
+                City = "",
+                Name = "حمیدرضا سمیعی نیا",
+                UserName = "hamidghalati",
+                PhoneNumber = "09351360402",
+                IsActive = true,
+                PasswordHash = new byte[] { 0x20, 0x20, 0x20, 0x20 },
+                PasswordSalt = new byte[] { 0x20, 0x20, 0x20, 0x20 }
+
+            };
+            var u = await _authService.Register(user, "hamid2311");
+
+            return Ok(u);
         }
 
         // GET api/values/5
