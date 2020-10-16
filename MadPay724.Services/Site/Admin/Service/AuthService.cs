@@ -2,14 +2,10 @@
 using MadPay724.Data.DatabaseContext;
 using MadPay724.Data.Models;
 using MadPay724.Repo.Infrastructure;
-using MadPay724.Services.Interface;
-using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using MadPay724.Services.Site.Admin.Interface;
 using System.Threading.Tasks;
 
-namespace MadPay724.Services.Service
+namespace MadPay724.Services.Site.Admin.Service
 {
     public class AuthService : IAuthService
     {
@@ -19,9 +15,16 @@ namespace MadPay724.Services.Service
             _db = dbContext;
         }
 
-        public Task<User> Login(string username, string password)
+        public async Task<User> Login(string username, string password)
         {
-            throw new NotImplementedException();
+            var user = await _db.UserRepository.GetAsync(p => p.UserName == username);
+            if (user==null)
+            {
+                return null;
+            }
+            if (!Utilities.VerifyPasswordHash(password, user.PasswordHash, user.PasswordSalt))
+                return null;
+            return user;
         }
 
         public async Task<User> Register(User user, string password)

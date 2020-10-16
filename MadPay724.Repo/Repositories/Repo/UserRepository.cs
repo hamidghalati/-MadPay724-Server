@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using MadPay724.Data.DatabaseContext;
 using MadPay724.Data.Models;
 using MadPay724.Repo.Infrastructure;
@@ -19,5 +20,12 @@ namespace MadPay724.Data.repositories.Repo
           _db = (_db ?? (MadPayDbContext) _db);
       }
 
-  }
+        public async Task<bool> UserExists(string username)
+        {
+            if (await GetAsync(p => p.UserName == username) != null)
+                return true;
+            return false;
+            
+        }
+    }
 }

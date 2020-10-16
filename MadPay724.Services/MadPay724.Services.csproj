@@ -15,4 +15,9 @@
 		<ProjectRefrence Include="..\MadPay724.Repo\MadPay724.Repo.csproj"></ProjectRefrence>
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="Api\" />
+	  <Folder Include="Site\App\" />
+	</ItemGroup>
+
 </Project>

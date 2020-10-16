@@ -18,4 +18,9 @@
 		<ProjectRefrence Include="..\MadPay724.Data\MadPay724.Data.csproj"></ProjectRefrence>
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="Dtos\Api\" />
+	  <Folder Include="Dtos\Site\App\" />
+	</ItemGroup>
+
 </Project>

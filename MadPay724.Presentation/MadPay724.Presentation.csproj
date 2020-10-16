@@ -6,6 +6,8 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.0.0-preview4-19216-03" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.0.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.0.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -15,6 +17,11 @@
 
 	<ItemGroup>
 		<ProjectRefrence Include="..\MadPay724.Services\MadPay724.Services.csproj"></ProjectRefrence>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Controllers\Api\" />
+	  <Folder Include="Controllers\Site\App\" />
 	</ItemGroup>
 
 </Project>
