@@ -12,6 +12,7 @@ using MadPay724.Data.Models;
 using MadPay724.Repo.Infrastructure;
 using MadPay724.Services.Site.Admin.Interface;
 using MadPay724.Services.Site.Admin.Service;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -19,6 +20,7 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace MadPay724.Presentation.Controllers.Site.Admin
 {
+    [Authorize]
     [Route("Site/admin/[controller]")]
     [ApiController]
     public class AuthController : ControllerBase
@@ -32,6 +34,9 @@ namespace MadPay724.Presentation.Controllers.Site.Admin
             _authService = new AuthService(_db);
             _config = config;
         }
+
+      
+        [AllowAnonymous]
         [HttpPost("register")]
         public async Task<IActionResult> Register(UserForRegisterDto userForRegisterDto)
         {
@@ -62,7 +67,7 @@ namespace MadPay724.Presentation.Controllers.Site.Admin
             return StatusCode(201);
         }
 
-
+        [AllowAnonymous]
         [HttpPost("Login")]
         public async Task<IActionResult> Login(UserForLoginDto userForLoginDto)
         {
